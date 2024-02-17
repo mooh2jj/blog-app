@@ -4,7 +4,7 @@ import MainPage from "../pages/MainPage";
 
 const { createBrowserRouter } = require("react-router-dom");
 
-const Loading = <div>Loading....</div>; // 코드 스플릿, Loading 컴포넌트를 만들어서 사용
+const Loading = <div>Loading....</div>; // 리액트 코드 전부 랜더링x, 코드 스플릿, Loading 컴포넌트를 만들어서 사용
 
 const Main = lazy(() => import("../pages/MainPage"));
 const About = lazy(() => import("../pages/AboutPage"));

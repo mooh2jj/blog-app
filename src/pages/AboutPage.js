@@ -1,7 +1,12 @@
 import React from "react";
+import BasicLayout from "../layout/BasicLayout";
 
-const About = () => {
-  return <div className={"text-3xl"}>About page</div>;
+const AboutPage = () => {
+  return (
+    <BasicLayout>
+      <div className=" text-3xl">About Page</div>
+    </BasicLayout>
+  );
 };
 
-export default About;
+export default AboutPage;
