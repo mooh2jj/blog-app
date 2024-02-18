@@ -12,6 +12,8 @@ const getNum = (param, defaultValue) => {
 const useCustomMove = () => {
   const navigate = useNavigate();
 
+  const [refresh, setRefresh] = React.useState(false);
+
   const [queryParams] = useSearchParams();
 
   const page = getNum(queryParams.get("page"), 1);
@@ -37,6 +39,8 @@ const useCustomMove = () => {
       queryStr = queryDefault;
     }
 
+    setRefresh(!refresh);
+
     navigate({ pathname: "../list", search: queryStr });
   };
 
@@ -44,7 +48,7 @@ const useCustomMove = () => {
     navigate({ pathname: `../modify/${num}`, search: queryDefault });
   };
 
-  return { moveToList, moveToModify, page, size };
+  return { moveToList, moveToModify, page, size, refresh };
 };
 
 export default useCustomMove;
