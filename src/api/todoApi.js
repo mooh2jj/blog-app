@@ -16,3 +16,8 @@ export const getList = async (pageParans) => {
   });
   return res.data;
 };
+
+export const addTodo = async (todo) => {
+  const res = await axios.post(`${prefix}`, todo);
+  return res.data;
+};
