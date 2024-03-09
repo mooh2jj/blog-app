@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { addTodo } from "../../api/todoApi";
+import ResultModal from "../common/ResultModal";
+import useCustomMove from "../../hooks/useCustomMove";
 
 const initState = {
   title: "",
@@ -8,6 +11,10 @@ const initState = {
 
 const AddComponent = () => {
   const [todo, setTodo] = React.useState(initState);
+
+  const [result, setResult] = useState(null);
+
+  const { moveToList } = useCustomMove();
 
   const handleChangeTodo = (e) => {
     console.log(e.target.name, e.target.value);
@@ -20,6 +27,21 @@ const AddComponent = () => {
 
   const handleClickAdd = () => {
     console.log(todo);
+    addTodo(todo)
+      .then((result) => {
+        console.log(result);
+        setResult(result.tno);
+        setTodo({ ...initState });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const closeModal = () => {
+    setResult(null);
+    // 리스트로 이동
+    moveToList();
   };
 
   return (
@@ -73,6 +95,17 @@ const AddComponent = () => {
           </button>
         </div>
       </div>
+
+      {/* 만약 result가 있으면 */}
+      {result ? (
+        <ResultModal
+          title={"Add Result"}
+          content={`New ${result} Added`}
+          callbackFn={closeModal}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
