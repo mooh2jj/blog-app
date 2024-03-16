@@ -65,7 +65,7 @@ const ListComponent = () => {
                     // product.uploadFileNames 가 있을 때만 보여준다.
                     src={
                       product.uploadFileNames
-                        ? `${host}/product/display?fileName=${product.uploadFileNames[0]}`
+                        ? `${host}/api/products/view/s_${product.uploadedFileName[0]}`
                         : "/noImage"
                     }
                   />
